@@ -2,26 +2,26 @@
 
 pkg load symbolic
 
-% set the symbolic vars
+
 syms m k x w L;
 
-% Analytical Solution
-% In simple harmonic motion, the restoring force is F = -kx
+
+%the restoring force is F = -kx
 F = -k*x; % -- (i)
 
-% the potential energy can be computed using ‘PE = - \int dx F‘
+
 potential_energy = - int(F, x)
 
-% potential energy = total energy when the displacement is maximum i.e. x=\pm L
+
 total_energy = subs(potential_energy, x, L);
 kinetic_energy = total_energy - potential_energy
 
-% setting initial parameters
+%ini parameters
 L = input("Enter length "); % m
 m = input("Enter mass of bob "); % kg
 k = input("Enter k "); % N/m
 
-% energy plot
+
 figure()
 hold on
 grid on
@@ -35,10 +35,10 @@ ylabel("Energy[J]");
 legend("PE", "KE", "location", "eastoutside");
 hold off
 
-% setting symbolic var
+
 syms x(t);
 
-% the positon could be computed by solving the linear homogenous ordinary differential equation
+
 eqn = diff(diff(x, t), t) == - w^2 * x
 solution_de_eq = dsolve(eqn)
 displacement = rhs(solution_de_eq);
@@ -48,7 +48,7 @@ acceleration = diff(velocity, t);
 C1 = C2 = 1; % assuming the amplitude A = C1 = C2 = 1
 w = k / m; % angular frequency
 
-% solution for displacement is given by rhs(solution_de_eq)
+%solution for displacement is given by rhs(solution_de_eq)
 t = 0:0.1:20;
 pos = eval(displacement);
 vel = eval(velocity);
