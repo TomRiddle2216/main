@@ -2,17 +2,17 @@
 
 pkg load symbolic
 
-%setting the symbolic variables
+
 syms t A x(t) k m b;
 
-%positon could be computed by solving the linear homogenous ODE
+%positon computed by solving the linear homogenous ODE
 eqn = diff(diff(x, t), t) + k*x/m + b * diff(x, t) / m == 0
 
-%solving DE analytically
+%solving DE 
 solution_de_eq = dsolve(eqn)
 displacement = rhs(solution_de_eq);
 
-%set coefficients to 1 for easiness
+
 C1 = C2 = A = 1;
 
 %For Underdamped case
@@ -39,7 +39,7 @@ x = v = a = [];
 t = 0:0.1:100;
 overdamped_x = eval(displacement);
 
-%Displacement Plot
+
 figure();
 hold on
 grid on
@@ -55,11 +55,11 @@ ylabel("Amplitude(m)")
 %set(gca,’XMinorTick’,’on’,’YMinorTick’,’on’)
 hold off
 
-%Compute Damped Oscillator Energy
+
 b = 0.2;
 energy = 0.5*k*A*A*exp(-b*t/m);
 
-%plot energy
+
 figure();
 hold on
 grid on
