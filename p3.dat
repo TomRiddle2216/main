@@ -2,11 +2,11 @@
 
 pkg load symbolic
 
-%setting symbolic variables
+
 syms theta0 omega t t0
 theta = theta0 * cos(omega * (t - t0))
 
-%Input parameters
+
 m = input("Enter mass of bob ");
 l = input("Enter the length of string ");
 t0 = input("Enter t0 ");
@@ -32,12 +32,12 @@ for t=t0:0.05:tf
 endfor
 
 
-%For Calculating Enenrgy
+
 v2 = vx.*vx + vy.*vy;
 kinetic_energy = 0.5 * m .* v2;
 potential_energy = m*g .* (l .+ y);
 
-%plot trajectory 
+
 figure()
 hold on
 grid on
@@ -48,7 +48,6 @@ ylabel("Y[m]");
 ylim([-l-0.5, 0])
 hold off
 
-%plot position
 figure()
 hold on
 grid on
@@ -61,7 +60,7 @@ ylabel("Displacement(m)");
 legend("X", "Y");
 hold off
 
-%Plot Energy
+
 figure()
 hold on
 grid on
