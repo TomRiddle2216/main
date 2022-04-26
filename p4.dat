@@ -1,0 +1,89 @@
+%Projectile
+
+pkg load symbolic
+%setting symbolic variables
+syms x0 y0 t g v0 th theta;
+
+%Analytical Solution for projectile motion
+%Time of flight
+T = 2 * v0 * sin(theta) / g;
+
+%Max height reached
+H = v0**2 * sin(theta)**2 / (2 * g);
+
+%Range
+R = v0**2 * sin(2*theta) / (2 * g);
+
+%Initial parameters
+g = 9.81; % m/s/s
+v0 = 20;
+th = pi/4;
+x0 = 0;
+y0 = 0;
+
+% Positions
+x = v0 * cos(th) * t
+y = v0 * sin(th) * t - 0.5*g*t*t
+
+% velocities
+vx = v0 * cos(th)
+vy = v0 * sin(th) - g * t
+t0 = input("Enter t0 ")
+tf = input("Enter tf ")
+x = y = [];
+m = 1;
+
+%loop for numerically computing the motion
+%NOTE: the loop will break when y < 0
+for t=t0:0.1:tf
+ x(m) = v0 * cos(th) * t;
+ y(m) = v0 * sin(th) * t - 0.5*g*t*t;
+ if (y(m) < 0)
+   display("BREAK")
+   break
+ endif
+ m = m + 1;
+endfor
+
+%Plot trajectory
+figure()
+hold on
+grid on
+plot(x, y, "marker", "+", "linewidth", 2)
+xlabel("x[m]")
+ylabel("y[m]")
+title("Trajectory")
+legend("Path of Projectile","location","SouthEast")
+ylim([0, 12])
+hold off
+
+% multiple thetas to contrast their ranges
+th = [pi/16, pi/8, pi/4]
+
+%plot multiple trajectories
+figure()
+hold on;
+grid on;
+% loop for computing multiple trajectories
+for i=1:3
+  x = y = [];
+  m = 1;
+  for t=0:0.1:3
+    x(m) = v0 * cos(th(i)) * t;
+    y(m) = v0 * sin(th(i)) * t - 0.5*g*t*t;
+    if (y(m) < 0)
+      display("BREAK")
+      break
+    endif
+    m = m + 1;
+  endfor
+  plot(x, y, "marker", "+", "linewidth", 2);
+  drawnow
+endfor
+
+xlabel("x[m]");
+ylabel("y[m]");
+title("Trajectory");
+legend("theta=pi/16", "theta=pi/8", "theta=pi/4", "location", "northeastoutside")
+ylim([0, 12])
+hold off
