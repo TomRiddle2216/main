@@ -1,22 +1,21 @@
 %Planetary RK45
 
-%Defining global parameters
 global G M;
 
-%simplify mass to obtain GM = 100.05 m^3/s^2
+
 G = 6.67 * 1e-11 % m^3/kg/s^2 -- Newtons graviations constant
 M = 1.5 * 1e12 % kg mass
 printf("Solving using RK45 method")
 
-%initial position of planet
+%planet pos
 r = 10;
 
-%time parameters
+
 t0 = 1;
 tf = 2800;
 dt = 0.05;
 
-%function to calculate acceleration in x direction
+
 function f = Fx(t, x, y, vx ,vy)
   global G M;
   r = sqrt (x**2 + y**2);
@@ -24,7 +23,7 @@ function f = Fx(t, x, y, vx ,vy)
 endfunction
 
 
-%function to calculate acceleration in y direction
+
 function f = Fy(t, x, y, vx ,vy)
   global G M;
   r = sqrt (x**2 + y**2);
