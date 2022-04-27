@@ -2,17 +2,17 @@
 
 pkg load symbolic
 
-%symbolic variables
+
 syms theta0 t t0 R omega
 
-%equations for position theta and x,y
+
 th = theta0 + omega * (t-t0)
 x = R * cos(theta0 + omega * (t-t0));
 y = R * sin(theta0 + omega * (t-t0));
 
 %fprintf("x="); pretty(x)
 
-%Initial conditions
+
 omega = input("Enter omega ");
 R = input("Enter radius ");
 t0 = input("Enter t0 ");
@@ -20,7 +20,7 @@ tf = input("Enter tf ");
 theta0 = pi/4
 theta = pos_x = pos_y = [];
 
-%Loop for numerically calculating positions
+
 idx = 1;
 for t=t0:0.05:tf
   pos_x(idx) = eval(x);
@@ -30,7 +30,7 @@ for t=t0:0.05:tf
 endfor
 
 
-% Plot the trajectory and positions
+
 figure();
 hold on;
 grid on;
