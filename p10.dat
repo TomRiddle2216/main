@@ -1,22 +1,22 @@
 %Randmon Walk
 
-%load symbolic package
+
 pkg load symbolic
 
-%define symbolic variables
+
 syms N r_rms
 
-%random walk
+
 R = sqrt(N) * r_rms
 
-%computing
+
 step = 1;
 total_steps = input("Enter no of steps ");
 
-%initial position (0, 0)
+
 x = y = [0];
 
-%computing
+
 for i=1:total_steps
   a = rand();
   b = rand();
@@ -26,7 +26,7 @@ for i=1:total_steps
   y(i + 1) = y(i) + y_value;
 endfor
 
-%plotting the trajectory
+
 fig = figure();
 plot(x, y, "linewidth", 2);
 grid on;
