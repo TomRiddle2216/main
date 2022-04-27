@@ -2,25 +2,25 @@
 
 pkg load symbolic
 
-%symbolic variables
+
 syms x0 y0 t t0 R omega
 
-%Equations for positions x and y coordinate
+
 x = x0 + R*cos(omega * (t-t0));
 y = y0 + R*sin(omega * (t-t0));
 
-%Equations for velocities in x and y coordinates
+
 vx = diff(x, t);
 vy = diff(y, t);
 
-%Equations for accelerations in x and y coordinates
+
 ax = diff(vx, t);
 ay = diff(vy, t);
 
 %for output
 %fprintf("ax"); preety(ax)
 
-%Initial conditions
+
 omega = input("Enter omega ");
 R = input("Enter Radius ");
 x0 = y0 = t0 = 0.0;
@@ -28,7 +28,7 @@ pos_x = pos_y = [];
 vel_x = vel_y = [];
 acc_x = acc_y = [];
 
-%loop for numerically computing position, velocity and acceleration
+
 idx = 1;
 for t=0:0.1:5
   pos_x(idx) = eval(x);
@@ -41,7 +41,7 @@ for t=0:0.1:5
 endfor
 
 
-%plot position, velocity and acceleration
+
 figure();
 hold on;
 grid on;
